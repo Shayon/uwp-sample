@@ -23,8 +23,11 @@
         <TextBlock Grid.Column="1" Grid.Row="0">Time</TextBlock>
 
         <Button x:Name="GenerateButton" Grid.Column="0" Grid.Row="1" Content="Generate Data" Tapped="Generate_OnTapped" Height="32" Width="115" />
-        <Button x:Name="ImportButton" Grid.Column="0" Grid.Row="2" Content="Start Import" Tapped="Import_OnTapped" Height="32" Margin="0,4" Width="100" />
 
+        <StackPanel Grid.Column="0" Grid.Row="2">
+            <CheckBox IsChecked="{x:Bind UseInpc, Mode=TwoWay}" Content="Use INPC"/>
+            <Button x:Name="ImportButton" Content="Start Import" Tapped="Import_OnTapped" Height="32" Margin="0,4" Width="100" />
+        </StackPanel>
 
         <TextBlock Grid.Column="1" Grid.Row="1">
             <Run Text="Generation time: " />

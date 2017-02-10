@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Microsoft.EntityFrameworkCore;
@@ -72,6 +73,7 @@ namespace DatabaseSampleApp
         private static int generateInt = 0;
 
         private static List<Website> fakeApiData;
+        
 
         public List<Website> GenerateFakeApiData()
         {
@@ -161,7 +163,25 @@ namespace DatabaseSampleApp
             }
         }
 
-        private static long? _generationTime;
+
+        //public static readonly DependencyProperty UseInpcProperty = DependencyProperty.Register(
+        //    "UseInpc", typeof(bool), typeof(MainPage), new PropertyMetadata(default(bool)));
+
+        //public bool UseInpc
+        //{
+        //    get { return (bool) GetValue(UseInpcProperty); }
+        //    set { SetValue(UseInpcProperty, value); }
+        //}
+
+        private bool? _useInpc = true;
+
+        public bool? UseInpc
+        {
+            get { return _useInpc; }
+            set { SetProperty(ref _useInpc, value); }
+        }
+
+        private long? _generationTime;
 
         public long? GeneratationTime
         {
@@ -169,7 +189,7 @@ namespace DatabaseSampleApp
             set { SetProperty(ref _generationTime, value); }
         }
 
-        private static long? _importerTime;
+        private long? _importerTime;
 
         public long? ImporterTime
         {
@@ -177,7 +197,7 @@ namespace DatabaseSampleApp
             set { SetProperty(ref _importerTime, value); }
         }
 
-        private static long? _saveChangesTime;
+        private long? _saveChangesTime;
 
         public long? SaveChangesTime
         {
@@ -185,7 +205,7 @@ namespace DatabaseSampleApp
             set { SetProperty(ref _saveChangesTime, value); }
         }
 
-        private static long? _retrievalNoTrackingTime;
+        private long? _retrievalNoTrackingTime;
 
         public long? RetrievalNoTrackingTime
         {
@@ -193,7 +213,7 @@ namespace DatabaseSampleApp
             set { SetProperty(ref _retrievalNoTrackingTime, value); }
         }
 
-        private static long? _retrievalTrackingTime;
+        private long? _retrievalTrackingTime;
 
         public long? RetrievalTrackingTime
         {
@@ -201,8 +221,8 @@ namespace DatabaseSampleApp
             set { SetProperty(ref _retrievalTrackingTime, value); }
         }
 
-        private static long? _queryTime;
-
+        private long? _queryTime;
+        
         public long? QueryTime
         {
             get { return _queryTime; }
