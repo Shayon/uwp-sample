@@ -131,17 +131,26 @@ namespace DatabaseSampleApp.Importers
         {
             if (webEntity == null) { return null; }
 
-            var dbEntity =
-                context
-                    .ChangeTracker
-                    .Entries<TDb>()
-                    .Select(entry => entry.Entity)
-                    .FirstOrDefault(
-                        entity => entity.ServerId == webEntity.ServerId) ??
-                context
-                    .Set<TDb>()
-                    .FirstOrDefault(
-                        entity => entity.ServerId == webEntity.ServerId);
+            TDb dbEntity = null;
+
+            var dbEntitySet = context.Set<TDb>();
+
+            foreach (var entity in dbEntitySet)
+            {
+                if (entity.ServerId == webEntity.ServerId) { dbEntity = entity; break; }
+            }
+
+            //var dbEntity =
+            //    context
+            //        .ChangeTracker
+            //        .Entries<TDb>()
+            //        .Select(entry => entry.Entity)
+            //        .FirstOrDefault(
+            //            entity => entity.ServerId == webEntity.ServerId) ??
+            //    context
+            //        .Set<TDb>()
+            //        .FirstOrDefault(
+            //            entity => entity.ServerId == webEntity.ServerId);
 
             if (dbEntity == null)
             {
