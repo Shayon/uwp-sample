@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
+using Microsoft.EntityFrameworkCore;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -183,8 +185,64 @@ namespace DatabaseSampleApp
             set { SetProperty(ref _saveChangesTime, value); }
         }
 
+        private static long? _retrievalNoTrackingTime;
 
+        public long? RetrievalNoTrackingTime
+        {
+            get { return _retrievalNoTrackingTime; }
+            set { SetProperty(ref _retrievalNoTrackingTime, value); }
+        }
 
+        private static long? _retrievalTrackingTime;
+
+        public long? RetrievalTrackingTime
+        {
+            get { return _retrievalTrackingTime; }
+            set { SetProperty(ref _retrievalTrackingTime, value); }
+        }
+
+        private static long? _queryTime;
+
+        public long? QueryTime
+        {
+            get { return _queryTime; }
+            set { SetProperty(ref _queryTime, value); }
+        }
+
+        private async void RetrievalButton_OnTapped(object sender, TappedRoutedEventArgs e)
+        {
+            SetButtonState(false);
+            RetrievalTrackingTime = null;
+            RetrievalNoTrackingTime = null;
+
+            Stopwatch swQuery = new Stopwatch();
+            Stopwatch swRetrieval1 = new Stopwatch();
+            Stopwatch swRetrieval2 = new Stopwatch();
+
+            await Task.Run(() =>
+            {
+                using (var context = new BloggingContext())
+                {
+                    swQuery.Start();
+                    var query = context.Websites.Include(w => w.Blogs).ThenInclude(b => b.Topics).ThenInclude(t => t.Posts);
+                    var expressionTree = query.Expression;
+                    swQuery.Stop();
+
+                    swRetrieval1.Start();
+                    var data1 = query.AsNoTracking().ToList();
+                    swRetrieval1.Stop();
+
+                    swRetrieval2.Start();
+                    var data2 = query.AsTracking().ToList();
+                    swRetrieval2.Stop();
+                }
+            });
+
+            QueryTime = swQuery.ElapsedMilliseconds;
+            RetrievalNoTrackingTime = swRetrieval1.ElapsedMilliseconds;
+            RetrievalTrackingTime = swRetrieval2.ElapsedMilliseconds;
+            SetButtonState(true);
+        }
 
 
         #region PropertyChangeImplementation
@@ -206,5 +264,7 @@ namespace DatabaseSampleApp
         }
 
         #endregion
+
+
     }
 }
