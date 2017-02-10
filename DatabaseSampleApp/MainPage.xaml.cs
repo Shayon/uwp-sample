@@ -163,24 +163,6 @@ namespace DatabaseSampleApp
             }
         }
 
-
-        //public static readonly DependencyProperty UseInpcProperty = DependencyProperty.Register(
-        //    "UseInpc", typeof(bool), typeof(MainPage), new PropertyMetadata(default(bool)));
-
-        //public bool UseInpc
-        //{
-        //    get { return (bool) GetValue(UseInpcProperty); }
-        //    set { SetValue(UseInpcProperty, value); }
-        //}
-
-        private bool? _useInpc = true;
-
-        public bool? UseInpc
-        {
-            get { return _useInpc; }
-            set { SetProperty(ref _useInpc, value); }
-        }
-
         private long? _generationTime;
 
         public long? GeneratationTime
