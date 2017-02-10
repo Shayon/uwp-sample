@@ -5,10 +5,67 @@
     xmlns:local="using:DatabaseSampleApp"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d" >
 
-    <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Button Content="Start Import" Tapped="Import_OnTapped"/>
-        <Button Content="Generate Data" Tapped="Generate_OnTapped"></Button>
-    </StackPanel>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="50"  />
+            <RowDefinition Height="70" />
+            <RowDefinition Height="70" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Column="0" Grid.Row="0">Actions</TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="0">Time</TextBlock>
+
+        <Button x:Name="GenerateButton" Grid.Column="0" Grid.Row="1" Content="Generate Data" Tapped="Generate_OnTapped" Height="32" Width="115" />
+        <Button x:Name="ImportButton" Grid.Column="0" Grid.Row="2" Content="Start Import" Tapped="Import_OnTapped" Height="32" Margin="0,4" Width="100" />
+
+
+        <TextBlock Grid.Column="1" Grid.Row="1">
+            <Run Text="Generation time: " />
+            <Run Text="{x:Bind GeneratationTime, Mode=OneWay}" />
+            <Run Text=" ms" />
+        </TextBlock>
+
+        <StackPanel Grid.Column="1" Grid.Row="2">
+            <TextBlock>
+                <Run Text="Importer time: " />
+                <Run Text="{x:Bind ImporterTime, Mode=OneWay}" />
+                <Run Text=" ms" />
+            </TextBlock>
+            <TextBlock>
+                <Run Text="Save changes time: " />
+                <Run Text="{x:Bind SaveChangesTime, Mode=OneWay}" />
+                <Run Text=" ms" />
+            </TextBlock>
+        </StackPanel>
+
+        <Button x:Name="RetrievalButton" Grid.Column="0" Grid.Row="3" Content="Retrieve All Data" Tapped="RetrievalButton_OnTapped" Height="32" Margin="0,4" Width="129" />
+
+        <StackPanel Grid.Column="1" Grid.Row="3">
+            <TextBlock>
+                <Run Text="Query expression time: " />
+                <Run Text="{x:Bind QueryTime, Mode=OneWay}" />
+                <Run Text=" ms" />
+            </TextBlock>
+            <TextBlock>
+                <Run Text="Retrieval (no tracking) time: " />
+                <Run Text="{x:Bind RetrievalNoTrackingTime, Mode=OneWay}" />
+                <Run Text=" ms" />
+            </TextBlock>
+
+            <TextBlock>
+                <Run Text="Retrieval (tracking) time: " />
+                <Run Text="{x:Bind RetrievalTrackingTime, Mode=OneWay}" />
+                <Run Text=" ms" />
+            </TextBlock>
+
+        </StackPanel>
+
+    </Grid>
 </Page>
