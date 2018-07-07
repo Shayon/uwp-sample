@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Windows.Data.Text;
+using DatabaseSampleApp.DB.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
-namespace DatabaseSampleApp.Importers
+namespace DatabaseSampleApp.DB.Importers
 {
 
     public static class Importers
     {
-        public static List<Website> Import(DbContext context, List<Website> apiWebsites)
+        public static ICollection<Website> Import(DbContext context, ICollection<Website> apiWebsites)
         {
             return Importer<Website, Website>.Import(context, apiWebsites, -1, (dbWebsite, apiWebsite) =>
             {
@@ -28,12 +29,12 @@ namespace DatabaseSampleApp.Importers
             });
         }
 
-        public static List<Blog> Import(DbContext context, List<Blog> apiBlogs, int WebsiteId)
+        public static ICollection<Blog> Import(DbContext context, ICollection<Blog> apiBlogs, int websiteId)
         {
-            return Importer<Blog, Blog>.Import(context, apiBlogs, WebsiteId, (dbBlog, apiBlog) =>
+            return Importer<Blog, Blog>.Import(context, apiBlogs, websiteId, (dbBlog, apiBlog) =>
             {
                 dbBlog.DomainUrl = apiBlog.DomainUrl;
-                dbBlog.WebsiteId = WebsiteId;
+                dbBlog.WebsiteId = websiteId;
                 dbBlog.Foo1 = apiBlog.Foo1;
                 dbBlog.Foo2 = apiBlog.Foo2;
                 dbBlog.Foo3 = apiBlog.Foo3;
@@ -48,13 +49,13 @@ namespace DatabaseSampleApp.Importers
             });
         }
 
-        public static List<Topic> Import(DbContext context, List<Topic> apiTopics, int BlogId)
+        public static ICollection<Topic> Import(DbContext context, ICollection<Topic> apiTopics, int blogId)
         {
-            return Importer<Topic, Topic>.Import(context, apiTopics, BlogId, (dbTopic, apiTopic) =>
+            return Importer<Topic, Topic>.Import(context, apiTopics, blogId, (dbTopic, apiTopic) =>
             {
                 dbTopic.TopicName = apiTopic.TopicName;
                 dbTopic.Url = apiTopic.Url;
-                dbTopic.BlogId = BlogId;
+                dbTopic.BlogId = blogId;
                 dbTopic.Foo1 = apiTopic.Foo1;
                 dbTopic.Foo2 = apiTopic.Foo2;
                 dbTopic.Foo3 = apiTopic.Foo3;
@@ -69,9 +70,9 @@ namespace DatabaseSampleApp.Importers
             });
         }
 
-        public static List<Post> Import(DbContext context, List<Post> apiPosts, int TopicId)
+        public static ICollection<Post> Import(DbContext context, ICollection<Post> apiPosts, int topicId)
         {
-            return Importer<Post, Post>.Import(context, apiPosts, TopicId, (dbPost, apiPost) =>
+            return Importer<Post, Post>.Import(context, apiPosts, topicId, (dbPost, apiPost) =>
             {
                 dbPost.Content = apiPost.Content;
                 dbPost.Foo1 = apiPost.Foo1;
@@ -85,7 +86,7 @@ namespace DatabaseSampleApp.Importers
                 dbPost.Foo9 = apiPost.Foo9;
                 dbPost.Foo10 = apiPost.Foo10;
                 dbPost.Title = apiPost.Title;
-                dbPost.TopicId = TopicId;
+                dbPost.TopicId = topicId;
             });
         }
     }
@@ -95,13 +96,13 @@ namespace DatabaseSampleApp.Importers
     where TDb : BaseModel
     where TApi : IHasServerId
     {
-        public static List<TDb> Import(
+        public static ICollection<TDb> Import(
             DbContext context,
-            List<TApi> webEntities,
+            ICollection<TApi> webEntities,
             int scopeId,
             Action<TDb, TApi> copyFields)
         {
-            var createdAndUpdatedDbEntities = new List<TDb>();
+            var createdAndUpdatedDbEntities = new ObservableHashSet<TDb>();
 
             if (webEntities == null || !webEntities.Any()) { return createdAndUpdatedDbEntities; }
 

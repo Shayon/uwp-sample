@@ -1,20 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseSampleApp", "DatabaseSampleApp\DatabaseSampleApp.csproj", "{1364AB0D-E9BC-41DA-921F-935061BD1E6D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseSampleApp.DB", "DatabaseSampleApp.DB\DatabaseSampleApp.DB.csproj", "{E7FB10A0-A1E5-4769-9727-316DA3C38F4D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
 		Debug|ARM = Debug|ARM
 		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
 		Release|ARM = Release|ARM
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1364AB0D-E9BC-41DA-921F-935061BD1E6D}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{1364AB0D-E9BC-41DA-921F-935061BD1E6D}.Debug|ARM.ActiveCfg = Debug|ARM
 		{1364AB0D-E9BC-41DA-921F-935061BD1E6D}.Debug|ARM.Build.0 = Debug|ARM
 		{1364AB0D-E9BC-41DA-921F-935061BD1E6D}.Debug|ARM.Deploy.0 = Debug|ARM
@@ -24,6 +29,7 @@ Global
 		{1364AB0D-E9BC-41DA-921F-935061BD1E6D}.Debug|x86.ActiveCfg = Debug|x86
 		{1364AB0D-E9BC-41DA-921F-935061BD1E6D}.Debug|x86.Build.0 = Debug|x86
 		{1364AB0D-E9BC-41DA-921F-935061BD1E6D}.Debug|x86.Deploy.0 = Debug|x86
+		{1364AB0D-E9BC-41DA-921F-935061BD1E6D}.Release|Any CPU.ActiveCfg = Release|x86
 		{1364AB0D-E9BC-41DA-921F-935061BD1E6D}.Release|ARM.ActiveCfg = Release|ARM
 		{1364AB0D-E9BC-41DA-921F-935061BD1E6D}.Release|ARM.Build.0 = Release|ARM
 		{1364AB0D-E9BC-41DA-921F-935061BD1E6D}.Release|ARM.Deploy.0 = Release|ARM
@@ -33,8 +39,27 @@ Global
 		{1364AB0D-E9BC-41DA-921F-935061BD1E6D}.Release|x86.ActiveCfg = Release|x86
 		{1364AB0D-E9BC-41DA-921F-935061BD1E6D}.Release|x86.Build.0 = Release|x86
 		{1364AB0D-E9BC-41DA-921F-935061BD1E6D}.Release|x86.Deploy.0 = Release|x86
+		{E7FB10A0-A1E5-4769-9727-316DA3C38F4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7FB10A0-A1E5-4769-9727-316DA3C38F4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7FB10A0-A1E5-4769-9727-316DA3C38F4D}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{E7FB10A0-A1E5-4769-9727-316DA3C38F4D}.Debug|ARM.Build.0 = Debug|Any CPU
+		{E7FB10A0-A1E5-4769-9727-316DA3C38F4D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E7FB10A0-A1E5-4769-9727-316DA3C38F4D}.Debug|x64.Build.0 = Debug|Any CPU
+		{E7FB10A0-A1E5-4769-9727-316DA3C38F4D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E7FB10A0-A1E5-4769-9727-316DA3C38F4D}.Debug|x86.Build.0 = Debug|Any CPU
+		{E7FB10A0-A1E5-4769-9727-316DA3C38F4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7FB10A0-A1E5-4769-9727-316DA3C38F4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7FB10A0-A1E5-4769-9727-316DA3C38F4D}.Release|ARM.ActiveCfg = Release|Any CPU
+		{E7FB10A0-A1E5-4769-9727-316DA3C38F4D}.Release|ARM.Build.0 = Release|Any CPU
+		{E7FB10A0-A1E5-4769-9727-316DA3C38F4D}.Release|x64.ActiveCfg = Release|Any CPU
+		{E7FB10A0-A1E5-4769-9727-316DA3C38F4D}.Release|x64.Build.0 = Release|Any CPU
+		{E7FB10A0-A1E5-4769-9727-316DA3C38F4D}.Release|x86.ActiveCfg = Release|Any CPU
+		{E7FB10A0-A1E5-4769-9727-316DA3C38F4D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AE7F8EC4-E0CC-4C92-90A7-28A1AE8B176A}
 	EndGlobalSection
 EndGlobal

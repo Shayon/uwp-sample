@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace DatabaseSampleApp.Migrations
+namespace DatabaseSampleApp.DB.Migrations
 {
     public partial class InitialMigration : Migration
     {
@@ -12,10 +10,11 @@ namespace DatabaseSampleApp.Migrations
                 name: "Websites",
                 columns: table => new
                 {
+                    ServerId = table.Column<int>(nullable: true),
                     WebsiteId = table.Column<int>(nullable: false)
-                        .Annotation("Autoincrement", true),
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Url = table.Column<string>(nullable: true),
                     Foo1 = table.Column<string>(nullable: true),
-                    Foo10 = table.Column<string>(nullable: true),
                     Foo2 = table.Column<string>(nullable: true),
                     Foo3 = table.Column<string>(nullable: true),
                     Foo4 = table.Column<string>(nullable: true),
@@ -24,8 +23,7 @@ namespace DatabaseSampleApp.Migrations
                     Foo7 = table.Column<string>(nullable: true),
                     Foo8 = table.Column<string>(nullable: true),
                     Foo9 = table.Column<string>(nullable: true),
-                    ServerId = table.Column<int>(nullable: true),
-                    Url = table.Column<string>(nullable: true)
+                    Foo10 = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -36,11 +34,12 @@ namespace DatabaseSampleApp.Migrations
                 name: "Blogs",
                 columns: table => new
                 {
+                    ServerId = table.Column<int>(nullable: true),
                     BlogId = table.Column<int>(nullable: false)
-                        .Annotation("Autoincrement", true),
+                        .Annotation("Sqlite:Autoincrement", true),
+                    WebsiteId = table.Column<int>(nullable: false),
                     DomainUrl = table.Column<string>(nullable: true),
                     Foo1 = table.Column<string>(nullable: true),
-                    Foo10 = table.Column<string>(nullable: true),
                     Foo2 = table.Column<string>(nullable: true),
                     Foo3 = table.Column<string>(nullable: true),
                     Foo4 = table.Column<string>(nullable: true),
@@ -49,8 +48,7 @@ namespace DatabaseSampleApp.Migrations
                     Foo7 = table.Column<string>(nullable: true),
                     Foo8 = table.Column<string>(nullable: true),
                     Foo9 = table.Column<string>(nullable: true),
-                    ServerId = table.Column<int>(nullable: true),
-                    WebsiteId = table.Column<int>(nullable: false)
+                    Foo10 = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -67,11 +65,13 @@ namespace DatabaseSampleApp.Migrations
                 name: "Topics",
                 columns: table => new
                 {
+                    ServerId = table.Column<int>(nullable: true),
                     TopicId = table.Column<int>(nullable: false)
-                        .Annotation("Autoincrement", true),
+                        .Annotation("Sqlite:Autoincrement", true),
                     BlogId = table.Column<int>(nullable: false),
+                    TopicName = table.Column<string>(nullable: true),
+                    Url = table.Column<string>(nullable: true),
                     Foo1 = table.Column<string>(nullable: true),
-                    Foo10 = table.Column<string>(nullable: true),
                     Foo2 = table.Column<string>(nullable: true),
                     Foo3 = table.Column<string>(nullable: true),
                     Foo4 = table.Column<string>(nullable: true),
@@ -80,9 +80,7 @@ namespace DatabaseSampleApp.Migrations
                     Foo7 = table.Column<string>(nullable: true),
                     Foo8 = table.Column<string>(nullable: true),
                     Foo9 = table.Column<string>(nullable: true),
-                    ServerId = table.Column<int>(nullable: true),
-                    TopicName = table.Column<string>(nullable: true),
-                    Url = table.Column<string>(nullable: true)
+                    Foo10 = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -99,11 +97,13 @@ namespace DatabaseSampleApp.Migrations
                 name: "Posts",
                 columns: table => new
                 {
+                    ServerId = table.Column<int>(nullable: true),
                     PostId = table.Column<int>(nullable: false)
-                        .Annotation("Autoincrement", true),
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Title = table.Column<string>(nullable: true),
                     Content = table.Column<string>(nullable: true),
+                    TopicId = table.Column<int>(nullable: false),
                     Foo1 = table.Column<string>(nullable: true),
-                    Foo10 = table.Column<string>(nullable: true),
                     Foo2 = table.Column<string>(nullable: true),
                     Foo3 = table.Column<string>(nullable: true),
                     Foo4 = table.Column<string>(nullable: true),
@@ -112,9 +112,7 @@ namespace DatabaseSampleApp.Migrations
                     Foo7 = table.Column<string>(nullable: true),
                     Foo8 = table.Column<string>(nullable: true),
                     Foo9 = table.Column<string>(nullable: true),
-                    ServerId = table.Column<int>(nullable: true),
-                    Title = table.Column<string>(nullable: true),
-                    TopicId = table.Column<int>(nullable: false)
+                    Foo10 = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
