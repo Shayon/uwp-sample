@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Windows.Data.Text;
+using DatabaseSampleApp.DB.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
-namespace DatabaseSampleApp.Importers
+namespace DatabaseSampleApp.DB.Importers
 {
 
     public static class Importers

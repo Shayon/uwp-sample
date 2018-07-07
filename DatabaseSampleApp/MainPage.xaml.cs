@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
+using DatabaseSampleApp.DB.Context;
+using DatabaseSampleApp.DB.Importers;
+using DatabaseSampleApp.DB.Models;
 using Microsoft.EntityFrameworkCore;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -45,7 +48,7 @@ namespace DatabaseSampleApp
                 using (var context = new BloggingContext())
                 {
                     swImport.Start();
-                    Importers.Importers.Import(context, fakeApiData);
+                    Importers.Import(context, fakeApiData);
                     swImport.Stop();
 
                     swSave.Start();
@@ -167,48 +170,48 @@ namespace DatabaseSampleApp
 
         public long? GeneratationTime
         {
-            get { return _generationTime; }
-            set { SetProperty(ref _generationTime, value); }
+            get => _generationTime;
+            set => SetProperty(ref _generationTime, value);
         }
 
         private long? _importerTime;
 
         public long? ImporterTime
         {
-            get { return _importerTime; }
-            set { SetProperty(ref _importerTime, value); }
+            get => _importerTime;
+            set => SetProperty(ref _importerTime, value);
         }
 
         private long? _saveChangesTime;
 
         public long? SaveChangesTime
         {
-            get { return _saveChangesTime; }
-            set { SetProperty(ref _saveChangesTime, value); }
+            get => _saveChangesTime;
+            set => SetProperty(ref _saveChangesTime, value);
         }
 
         private long? _retrievalNoTrackingTime;
 
         public long? RetrievalNoTrackingTime
         {
-            get { return _retrievalNoTrackingTime; }
-            set { SetProperty(ref _retrievalNoTrackingTime, value); }
+            get => _retrievalNoTrackingTime;
+            set => SetProperty(ref _retrievalNoTrackingTime, value);
         }
 
         private long? _retrievalTrackingTime;
 
         public long? RetrievalTrackingTime
         {
-            get { return _retrievalTrackingTime; }
-            set { SetProperty(ref _retrievalTrackingTime, value); }
+            get => _retrievalTrackingTime;
+            set => SetProperty(ref _retrievalTrackingTime, value);
         }
 
         private long? _queryTime;
         
         public long? QueryTime
         {
-            get { return _queryTime; }
-            set { SetProperty(ref _queryTime, value); }
+            get => _queryTime;
+            set => SetProperty(ref _queryTime, value);
         }
 
         private async void RetrievalButton_OnTapped(object sender, TappedRoutedEventArgs e)

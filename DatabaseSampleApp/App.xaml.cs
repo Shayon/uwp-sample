@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using DatabaseSampleApp.DB.Context;
 using Microsoft.EntityFrameworkCore;
 
 namespace DatabaseSampleApp
